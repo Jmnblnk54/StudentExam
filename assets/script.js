@@ -19,23 +19,22 @@
 // }
 
 
-// document.getElementById("playButton").addEventListener("click", function(){
+// document.getElementById("startQuiz").addEventListener("click", function(){
 //     document.getElementById("home").className += " hide"
 
 
 //   });
 const question = document.getElementById("question");
 const options = Array.from(document.getElementsByClassName("option-text"));
-
-var liveQuestion = {};
-var takeAnswers = false;
-var score = 0;
-var questionNumber = 0;
-var questionLog = [];
-const questionCounterText = document.getElementById("questionCounter");
+let liveQuestion = {};
+let takeAnswers = false;
+let score = 0;
+let questionNumber = 0;
+let questionLog = [];
+const questionCounterText = document.getElementById("question-counter");
 const scoreText = document.getElementById("score");
 
-var questions = [
+let questions = [
   {
     question: "The $ is a symbol that references :",
     option1: "the cost of learning to code.",
@@ -135,53 +134,69 @@ quizStart = () => {
   questionNumber = 0;
   score = 0;
   questionLog = [...questions];
+  console.log(questionLog);
   newQuestion();
 };
 
 newQuestion = () => {
   if (questionLog.length === 0 || questionNumber >= questionsMax) {
     localStorage.setItem("newScore", score);
-    return window.location.assign("./finish.html");
-  }
+    return window.location.assign("./end.html");
+  };
   questionNumber++;
-  questionCounterText.innerText = questionNumber + "/" + questionsMax;
+  questionCounterText.innerText = `${questionNumber}/${questionsMax}`;
+
   const questionIndex = Math.floor(Math.random() * questionLog.length);
-    liveQuestion = questionLog[questionIndex];
-    question.innerText = liveQuestion.question;
-  options.forEach(option =>{
+  liveQuestion = questionLog[questionIndex];
+  question.innerText = liveQuestion.question;
+
+  options.forEach(option => {
     const number = option.dataset["number"];
     option.innerText = liveQuestion["option" + number];
   });
 
   questionLog.splice(questionIndex, 1);
+
+  
+  
+  
+
+  
   takeAnswers = true;
 };
 
 options.forEach(option => {
-  option.addEventListener("click", e =>{
+  option.addEventListener("click", e => {
     if(!takeAnswers) return;
+
     takeAnswers = false;
-    var classToApply = "incorrect";
     const chosenAnswer = e.target;
-    const selectedAnswer = chosenAnswer.dataset["number"]   })
+    const selectedAnswer = chosenAnswer.dataset['number'];
+    
+    const classToApply = "incorrect";
       if (chosenAnswer == liveQuestion.answer) {
         classToApply = "correct";
-      }
+      };
+
       if(classToApply === "correct"){
         incrementScore(correctBonus);
-      }
-    chosenAnswer.parentElement.classList.add(classToApply);    
+      };
+
+
+    chosenAnswer.parentElement.classList.add(classToApply);
+    
+    console.log(selectedAnswer == liveQuestion.answer);
     
     setTimeout( () => {
       chosenAnswer.parentElement.classList.remove(classToApply);
-      getQuestion();
+      newQuestion();
     }, 1000);
-    
   });
+});
+
 incrementScore = num => {
   score += num;
   scoreText.innerText = score;
-}
-
+};
 
 quizStart();
