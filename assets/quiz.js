@@ -207,12 +207,12 @@ choices.forEach(choice => {
         
     });
 });
-
+//Updates score
 incrementScore = num => {
     score +=num;
     scoreText.innerText = score;
 }
-
+//Decreases time for wrong answer
 decreaseTimer = num => {
     timer -= 10;
     timer.innerText = timer;

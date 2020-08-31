@@ -1,5 +1,5 @@
 :root {
-    background-color: #ecf5ff;
+    background-color: #6dffe7;
     font-size: 62.5%;
 }
 
@@ -8,7 +8,7 @@
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
-    color: #333;
+    color: #55bec0;
 }
 
  h1,
@@ -20,7 +20,7 @@
 
  h1 {
      font-size: 5.4rem;
-     color: rgb(255, 0, 140);
+     color: #394f6b;
      margin-bottom: 5rem;
      text-align: center;
  }
@@ -45,7 +45,7 @@ h3 {
 
 .container {
     width: 100vw;
-    height: 100vw;
+    height: 70vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -88,10 +88,10 @@ h3 {
     padding: 1rem 0;
     width: 20rem;
     text-align: center;
-    border: 0.1rem solid  rgb(255, 0, 140);
+    border: 0.1rem solid  #394f6b;
     margin-bottom: 1rem;
     text-decoration: none;
-    color: rgb(255, 0, 140);
+    color: #394f6b;
     background-color: white;
 }
 
